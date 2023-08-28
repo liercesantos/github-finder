@@ -47,12 +47,14 @@ const GithubReducer = (
       return {
         ...GithubState,
         search: action.payload.search,
+        loading: true,
       };
     }
     case GithubActionTypes.ON_SCROLLING: {
       return {
         ...state,
         page: action.payload.page,
+        moreLoading: true,
       };
     }
     case GithubActionTypes.RESET: {

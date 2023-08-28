@@ -14,6 +14,6 @@ export interface GithubActions {
 }
 
 export const repositoriesChange = (response: any) => {
-  console.log('REPOSITORIES_CHANGE', response.data?.length);
+  //console.log('REPOSITORIES_CHANGE', response.data?.length);
   return {type: GithubActionTypes.API_SUCCESS, payload: {data: response.data}};
 };

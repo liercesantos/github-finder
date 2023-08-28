@@ -1,6 +1,7 @@
 import useRedux from './use.redux';
 import {shallowEqual} from 'react-redux';
 import {fetch} from '../api/repository.api';
+import {useEffect} from "react";
 
 const useGithub = () => {
   const {appSelector, dispatch} = useRedux();
@@ -10,11 +11,10 @@ const useGithub = () => {
     }),
     shallowEqual,
   );
-  const {page, search} = repositories;
+  const {page, search, loading, moreLoading} = repositories;
   //const [page, setPage] = useState<number>(1);
   //const [search, setSearch] = useState<string>('');
   const onSearch = (value: string) => {
-    console.log('ON_SEARCH', value.length);
     if (value.length > 0) {
       dispatch({type: 'ON_SEARCH', payload: {search: value}});
       fetchRepositories(value);
@@ -22,7 +22,6 @@ const useGithub = () => {
   };
   const fetchMoreData = () => {
     if (!repositories.isListEnd && !repositories.moreLoading) {
-      console.log('FETCH_MORE_DATA', page, search.length);
       const next = page + 1;
       dispatch({type: 'ON_SCROLLING', payload: {page: next}});
       fetchRepositories(search, next);
@@ -64,6 +63,8 @@ const useGithub = () => {
 
   return {
     repositories,
+    loading,
+    moreLoading,
     page,
     search,
     onSearch,

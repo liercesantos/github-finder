@@ -16,6 +16,9 @@ const Router = () => {
           component={Home}
           options={{
             title: 'Repositórios',
+            headerStyle: {
+              height: 88,
+            },
             headerTitleStyle: {
               fontSize: 34,
               fontWeight: '700',
@@ -25,7 +28,11 @@ const Router = () => {
             },
           }}
         />
-        <Screen name={'Details'} component={Details} />
+        <Screen
+          name={'Details'}
+          component={Details}
+          options={{title: 'Detalhes'}}
+        />
       </Navigator>
     </NavigationContainer>
   );
