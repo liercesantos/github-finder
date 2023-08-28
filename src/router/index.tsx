@@ -7,7 +7,6 @@ import Details from '../screens/details';
 const {Navigator, Screen} = createStackNavigator();
 
 const Router = () => {
-
   return (
     <NavigationContainer>
       <Navigator initialRouteName={'Home'}>
