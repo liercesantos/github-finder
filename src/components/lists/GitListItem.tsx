@@ -12,11 +12,17 @@ import {
   GitItemRate,
   GitItemsWrapper,
 } from './lists.styles';
+import {useNavigation} from '@react-navigation/native';
 
 const GitListItem = (props: GitListItemProps) => {
   const {item} = props;
+  const navigation = useNavigation();
   return (
-    <GitItemsWrapper>
+    <GitItemsWrapper
+      onPress={() => {
+        // @ts-ignore
+        navigation.navigate('Details', {repository: item});
+      }}>
       <GitItemAvatarColumn>
         <GitItemAvatarWrapper>
           <GitItemAvatar

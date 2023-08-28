@@ -34,6 +34,16 @@ export const GithubState: GithubTypes = {
   data: [],
 };
 
+export type GitListItemTypes = {
+  name: string;
+  rate: number;
+  html_url: string;
+  owner: {
+    login: string;
+    avatar_url: string;
+  };
+};
+
 export type GitListItemProps = {
-  item: object;
+  item: GitListItemTypes;
 };

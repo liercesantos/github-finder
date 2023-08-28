@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const GitContainer = styled.SafeAreaView`
   flex: 1;
 `;
-export const GitItemsWrapper = styled.View`
+export const GitItemsWrapper = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   width: calc(100% - 32px);

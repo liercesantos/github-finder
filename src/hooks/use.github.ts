@@ -37,10 +37,16 @@ const useGithub = () => {
         (repository, [_, row]) => {
           // @ts-ignore
           repository.push({
+            // @ts-ignore
             name: row?.name,
+            // @ts-ignore
             rate: row?.stargazers_count,
+            // @ts-ignore
+            html_url: row?.html_url,
             owner: {
+              // @ts-ignore
               login: row?.owner.login,
+              // @ts-ignore
               avatar_url: row?.owner.avatar_url,
             },
           });
