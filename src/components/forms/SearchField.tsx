@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Field, FieldWrapper, IconWrapper} from './fields.styles';
 import SearchIcon from '../../assets/svg/SearchIcon';
-import {FieldProps} from '../../@types/fields.types';
+import {SearchFieldProps} from '../../@types/fields.types';
 
-const SearchField = (props: FieldProps) => {
+const SearchField = (props: SearchFieldProps) => {
+  const {onSearch} = props;
+  const [searchText, setSearchText] = useState<string | undefined>(undefined);
+
   return (
     <FieldWrapper>
       <IconWrapper>
@@ -12,8 +15,11 @@ const SearchField = (props: FieldProps) => {
       <Field
         placeholder={'Busca por repositórios'}
         placeholderTextColor="#3c3c4399"
-        onChangeText={props.onChangeText}
-        value={props.value}
+        onChangeText={setSearchText}
+        onBlur={() => {
+          onSearch(searchText);
+        }}
+        value={searchText}
       />
     </FieldWrapper>
   );

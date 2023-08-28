@@ -1,22 +1,25 @@
 import React from 'react';
 import {GitContainer} from './lists.styles';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
-import {GitListProps} from '../../@types/github.types';
+import {FlatList} from 'react-native';
+import useGithub from '../../hooks/use.github';
+import GitListItem from './GitListItem';
 
-const GitList = (props: GitListProps) => {
+const GitList = () => {
+  const {repositories, fetchMoreData} = useGithub();
+
   return (
     <GitContainer>
-      {props.repositories.loading ? (
-        <ActivityIndicator size={'large'} />
-      ) : (
+      {repositories.data.length > 0 ? (
         <FlatList
-          data={props.repositories.data}
-          renderItem={({item}) => (
-            <View>
-              <Text>Hello</Text>
-            </View>
-          )}
+          /* eslint-disable-next-line react-native/no-inline-styles */
+          contentContainerStyle={{flexGrow: 1}}
+          data={repositories.data}
+          renderItem={({item}) => <GitListItem item={item} />}
+          onEndReachedThreshold={0}
+          onEndReached={fetchMoreData}
         />
+      ) : (
+        <></>
       )}
     </GitContainer>
   );

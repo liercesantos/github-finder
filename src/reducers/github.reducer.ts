@@ -33,13 +33,30 @@ const GithubReducer = (
       return {...state, moreLoading: true};
     }
     case GithubActionTypes.API_SUCCESS: {
+      //console.log(`${GithubActionTypes.API_SUCCESS} :: action`, action);
+      //console.log(`${GithubActionTypes.API_SUCCESS} :: state`, state);
       return {
         ...state,
-        data: [...state.data, ...action.data.repositories],
+        data: [...state.data, ...action.payload.data],
         error: '',
         loading: false,
         moreLoading: false,
       };
+    }
+    case GithubActionTypes.ON_SEARCH: {
+      return {
+        ...GithubState,
+        search: action.payload.search,
+      };
+    }
+    case GithubActionTypes.ON_SCROLLING: {
+      return {
+        ...state,
+        page: action.payload.page,
+      };
+    }
+    case GithubActionTypes.RESET: {
+      return GithubState;
     }
     default: {
       return {...state};

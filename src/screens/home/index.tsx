@@ -1,17 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ContentView} from './styles/index.styles';
 import SearchField from '../../components/forms/SearchField';
-import useGithub from '../../hooks/use.github';
 import GitList from '../../components/lists/GitList';
+import useGithub from '../../hooks/use.github';
 const Home = () => {
-  const {repositories} = useGithub();
-  const [searchText, setSearchText] = useState<string | undefined>(undefined);
+  const {onSearch} = useGithub();
 
   return (
     <ContentView>
-      <SearchField onChangeText={setSearchText} value={searchText} />
-
-      <GitList repositories={repositories} />
+      <SearchField onSearch={onSearch} />
+      <GitList />
     </ContentView>
   );
 };
